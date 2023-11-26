@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C3872592B12B1F000FB02AE /* sousApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3872582B12B1F000FB02AE /* sousApp.swift */; };
-		2C38725B2B12B1F000FB02AE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38725A2B12B1F000FB02AE /* ContentView.swift */; };
+		2C38725B2B12B1F000FB02AE /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38725A2B12B1F000FB02AE /* ChatView.swift */; };
 		2C38725D2B12B1F200FB02AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C38725C2B12B1F200FB02AE /* Assets.xcassets */; };
 		2C3872602B12B1F200FB02AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C38725F2B12B1F200FB02AE /* Preview Assets.xcassets */; };
 		2C38726A2B12B1F300FB02AE /* sousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3872692B12B1F300FB02AE /* sousTests.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		2C3872552B12B1F000FB02AE /* sous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3872582B12B1F000FB02AE /* sousApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sousApp.swift; sourceTree = "<group>"; };
-		2C38725A2B12B1F000FB02AE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2C38725A2B12B1F000FB02AE /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		2C38725C2B12B1F200FB02AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C38725F2B12B1F200FB02AE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C3872652B12B1F300FB02AE /* sousTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sousTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				2C3872582B12B1F000FB02AE /* sousApp.swift */,
-				2C38725A2B12B1F000FB02AE /* ContentView.swift */,
+				2C38725A2B12B1F000FB02AE /* ChatView.swift */,
 				2C38725C2B12B1F200FB02AE /* Assets.xcassets */,
 				2C38725E2B12B1F200FB02AE /* Preview Content */,
 			);
@@ -257,7 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C38725B2B12B1F000FB02AE /* ContentView.swift in Sources */,
+				2C38725B2B12B1F000FB02AE /* ChatView.swift in Sources */,
 				2C3872592B12B1F000FB02AE /* sousApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,11 +425,12 @@
 				DEVELOPMENT_TEAM = QP49UXD4V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs your location to get local restaurants.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,11 +455,12 @@
 				DEVELOPMENT_TEAM = QP49UXD4V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs your location to get local restaurants.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
