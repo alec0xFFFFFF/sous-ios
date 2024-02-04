@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "5E07F576-DDE9-4C56-B71C-B7932ADA096B"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "517C3B97-9FD3-4709-8901-2439BC793427"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "sous/CaptureView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "logMeal()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "517C3B97-9FD3-4709-8901-2439BC793427 - 48d4b0fd60d623ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sous.CaptureView.logMeal() -&gt; ()"
+                  moduleName = "sous"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkwhite/Documents/sous/sous/CaptureView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "3284">
+               </Location>
+               <Location
+                  uuid = "517C3B97-9FD3-4709-8901-2439BC793427 - 48d4b0fd60d623ca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "sous.CaptureView.logMeal() -&gt; ()"
+                  moduleName = "sous"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/alexanderkwhite/Documents/sous/sous/CaptureView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "652">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

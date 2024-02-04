@@ -77,8 +77,16 @@ struct ChatView: View {
                     }
                 }
                 .padding()
+                
+                NavigationLink(destination: CaptureView()) {
+                                    Text("Record Meal")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(Color.blue)
+                                        .cornerRadius(10)
+                                }
+                                .navigationBarTitle("Sous Chat 🧑‍🍳")
             }
-            .navigationTitle("Sous Chat 🧑‍🍳")
             .onAppear {
                 locationService.requestLocation()
             }

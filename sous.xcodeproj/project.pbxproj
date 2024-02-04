@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2B3F832B1323F100E642FE /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F822B1323F100E642FE /* CaptureView.swift */; };
+		2C2B3F852B1327EB00E642FE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F842B1327EA00E642FE /* LoginView.swift */; };
+		2C2B3F872B13286000E642FE /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F862B13286000E642FE /* BrowseView.swift */; };
+		2C2B3F892B13DFBA00E642FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F882B13DFBA00E642FE /* HomeView.swift */; };
+		2C32B92A2B6F565900DA4C30 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32B9292B6F565900DA4C30 /* RecipeResponse.swift */; };
+		2C32B92C2B6F588300DA4C30 /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32B92B2B6F588300DA4C30 /* RecipeListView.swift */; };
+		2C32B92E2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32B92D2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift */; };
+		2C32B9302B6F5B5F00DA4C30 /* DishesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */; };
+		2C32B9322B6F5CFB00DA4C30 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */; };
 		2C3872592B12B1F000FB02AE /* sousApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3872582B12B1F000FB02AE /* sousApp.swift */; };
 		2C38725B2B12B1F000FB02AE /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38725A2B12B1F000FB02AE /* ChatView.swift */; };
 		2C38725D2B12B1F200FB02AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C38725C2B12B1F200FB02AE /* Assets.xcassets */; };
@@ -34,6 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C2B3F822B1323F100E642FE /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		2C2B3F842B1327EA00E642FE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2C2B3F862B13286000E642FE /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
+		2C2B3F882B13DFBA00E642FE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		2C32B9292B6F565900DA4C30 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
+		2C32B92B2B6F588300DA4C30 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		2C32B92D2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueriedRecipeResponse.swift; sourceTree = "<group>"; };
+		2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesResponse.swift; sourceTree = "<group>"; };
+		2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		2C3872552B12B1F000FB02AE /* sous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3872582B12B1F000FB02AE /* sousApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sousApp.swift; sourceTree = "<group>"; };
 		2C38725A2B12B1F000FB02AE /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -96,8 +114,17 @@
 			children = (
 				2C3872582B12B1F000FB02AE /* sousApp.swift */,
 				2C38725A2B12B1F000FB02AE /* ChatView.swift */,
+				2C2B3F822B1323F100E642FE /* CaptureView.swift */,
+				2C2B3F842B1327EA00E642FE /* LoginView.swift */,
+				2C2B3F862B13286000E642FE /* BrowseView.swift */,
 				2C38725C2B12B1F200FB02AE /* Assets.xcassets */,
 				2C38725E2B12B1F200FB02AE /* Preview Content */,
+				2C2B3F882B13DFBA00E642FE /* HomeView.swift */,
+				2C32B9292B6F565900DA4C30 /* RecipeResponse.swift */,
+				2C32B92B2B6F588300DA4C30 /* RecipeListView.swift */,
+				2C32B92D2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift */,
+				2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */,
+				2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */,
 			);
 			path = sous;
 			sourceTree = "<group>";
@@ -259,6 +286,15 @@
 			files = (
 				2C38725B2B12B1F000FB02AE /* ChatView.swift in Sources */,
 				2C3872592B12B1F000FB02AE /* sousApp.swift in Sources */,
+				2C32B9302B6F5B5F00DA4C30 /* DishesResponse.swift in Sources */,
+				2C32B92E2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift in Sources */,
+				2C2B3F872B13286000E642FE /* BrowseView.swift in Sources */,
+				2C32B92A2B6F565900DA4C30 /* RecipeResponse.swift in Sources */,
+				2C2B3F892B13DFBA00E642FE /* HomeView.swift in Sources */,
+				2C32B9322B6F5CFB00DA4C30 /* RecipeDetailView.swift in Sources */,
+				2C2B3F852B1327EB00E642FE /* LoginView.swift in Sources */,
+				2C32B92C2B6F588300DA4C30 /* RecipeListView.swift in Sources */,
+				2C2B3F832B1323F100E642FE /* CaptureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +461,7 @@
 				DEVELOPMENT_TEAM = QP49UXD4V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This  app needs camera access so you can take photos of food.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs your location to get local restaurants.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -455,6 +492,7 @@
 				DEVELOPMENT_TEAM = QP49UXD4V9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This  app needs camera access so you can take photos of food.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs your location to get local restaurants.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
