@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct RecipeDetailView: View {
-    let recipeId: String
+    let recipeId: Int
     @State private var recipe: RecipeResponse? = nil
     @State private var isLoading = true
 

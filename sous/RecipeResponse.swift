@@ -8,7 +8,7 @@
 import Foundation
 
 struct RecipeResponse: Codable, Identifiable {
-    var id: String
+    var id: Int
     var author: String?
     var createdAt: String
     var deleted: Bool

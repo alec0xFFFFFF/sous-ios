@@ -10,6 +10,8 @@ import CoreLocation
 
 
 struct CaptureView: View {
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     @State private var restaurantName: String = ""
     @State private var mealName: String = ""
     @State private var price: String = ""
@@ -22,7 +24,7 @@ struct CaptureView: View {
     @State private var recipeResponse: RecipeResponse?
     @State private var imageSource: UIImagePickerController.SourceType = .photoLibrary
 
-    @State private var selectedOption = "Meal"
+    @State private var selectedOption = "Recipe"
         let options = ["Meal", "Ingredient", "Recipe"]
     
     let textFieldBackgroundColor = Color(red: 197.0 / 255.0, green: 219.0 / 255.0, blue: 218.0 / 255.0)
@@ -35,6 +37,15 @@ struct CaptureView: View {
     var body: some View {
         NavigationView {
             VStack {
+                
+                Form {
+                    Picker("Log Option", selection: $selectedOption) {
+                        ForEach(options, id: \.self) { option in
+                            Text(option).tag(option)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                        ForEach(images.indices, id: \.self) { index in
@@ -121,6 +132,7 @@ struct CaptureView: View {
                             .padding()
                             .background(Color.blue)
                             .cornerRadius(10)
+                            .background(sendingRequest ? Color.gray.opacity(0.5) : Color.blue)
                             .disabled(sendingRequest)
                     }
                     .padding()
@@ -131,7 +143,7 @@ struct CaptureView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
+                            .background(sendingRequest ? Color.gray.opacity(0.5) : Color.blue)
                             .cornerRadius(10)
                             .disabled(sendingRequest)
                     }
@@ -143,12 +155,12 @@ struct CaptureView: View {
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.blue)
+                            .background(sendingRequest ? Color.gray.opacity(0.5) : Color.blue)
                             .cornerRadius(10)
                             .disabled(sendingRequest)
                     }
                     .padding()
-                    if let recipe = recipeResponse, recipe.id != nil {
+                    if let recipe = recipeResponse, recipe.id != -1 {
                         Text("Last Recipe Submitted:")
                         Text("Title: \(recipe.title )")
                             .lineLimit(nil)
@@ -176,22 +188,12 @@ struct CaptureView: View {
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity)
                                 .padding()
-                                .background(Color.red)
+                                .background(sendingRequest ? Color.gray.opacity(0.5) : Color.red)
                                 .cornerRadius(10)
                                 .disabled(sendingRequest)
                         }
                     }
                 }
-                Form {
-                    Picker("Log Option", selection: $selectedOption) {
-                        ForEach(options, id: \.self) { option in
-                            Text(option).tag(option)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                }
-                .navigationBarTitle("Log Options")
-
                 Spacer()
             }
             .navigationTitle("Capture")
@@ -199,6 +201,9 @@ struct CaptureView: View {
                     self.hideKeyboard()
                 }
             .background(gradient) // Apply the gradient as the background
+        }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Request Failed"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
     }
     
@@ -240,21 +245,25 @@ struct CaptureView: View {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
-            sendingRequest = false
             if let data = data {
                 if let decodedResponse = try? JSONDecoder().decode(RecipeResponse.self, from: data) {
                     self.recipeResponse = decodedResponse
                 } else {
+                    alertMessage = "Failed to add recipe"
+                    showAlert = true
                     print("Failed to decode response")
                 }
             } else if let error = error {
+                alertMessage = error.localizedDescription
+                showAlert = true
                 print("Error in request: \(error.localizedDescription)")
             }
         }
+            sendingRequest = false
         }.resume()
     }
     
-    func deleteRecipe(recipeId: String) {
+    func deleteRecipe(recipeId: Int) {
         guard let url = URL(string: "https://recipe-service-production.up.railway.app/v1/recipes/\(recipeId)") else {
             print("Invalid URL")
             return
@@ -265,6 +274,8 @@ struct CaptureView: View {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
+                alertMessage = error.localizedDescription
+                showAlert = true
                 print("Error during DELETE request: \(error.localizedDescription)")
                 return
             }

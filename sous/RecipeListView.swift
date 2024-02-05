@@ -10,7 +10,7 @@ struct RecipeListView: View {
     @State private var query: String = "italian"
     @State private var dishes: DishesResponse? = nil
     @State private var isLoading = false
-    @State private var selectedRecipeId: String?
+    @State private var selectedRecipeId: Int?
     @State private var isShowingDetailView = false
 
     var body: some View {
@@ -68,7 +68,7 @@ struct RecipeListView: View {
         dishes?.dishes.remove(atOffsets: offsets)
     }
     
-    func deleteRecipe(recipeId: String) {
+    func deleteRecipe(recipeId: Int) {
         guard let url = URL(string: "https://recipe-service-production.up.railway.app/v1/recipes/\(recipeId)") else {
             print("Invalid URL")
             return
@@ -94,10 +94,29 @@ struct RecipeListView: View {
             DispatchQueue.main.async {
                 isLoading = false
                 if let data = data {
-                    if let decodedResponse = try? JSONDecoder().decode(DishesResponse.self, from: data) {
+                    do {
+                        let decodedResponse = try JSONDecoder().decode(DishesResponse.self, from: data)
                         self.dishes = decodedResponse
-                    } else {
-                        print("Failed to decode response")
+                    } catch {
+                        print("Failed to decode DishesResponse: \(error)")
+                        
+                        // If you need more detailed error information:
+                        if let decodingError = error as? DecodingError {
+                            switch decodingError {
+                            case .dataCorrupted(let context):
+                                print("Data corrupted: \(context.debugDescription)")
+                            case .keyNotFound(let key, let context):
+                                print("Key '\(key)' not found: \(context.debugDescription)")
+                            case .typeMismatch(let type, let context):
+                                print("Type mismatch for type \(type): \(context.debugDescription)")
+                            case .valueNotFound(let value, let context):
+                                print("Value '\(value)' not found: \(context.debugDescription)")
+                            @unknown default:
+                                print("Unknown decoding error: \(decodingError)")
+                            }
+                        } else {
+                            print("Other error: \(error)")
+                        }
                     }
                 } else if let error = error {
                     print("Error in request: \(error.localizedDescription)")

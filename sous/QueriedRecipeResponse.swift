@@ -8,7 +8,7 @@
 import Foundation
 
 struct QueriedRecipeResponse: Codable, Identifiable {
-    var id: String
+    var id: Int
     var author: String
     var title: String
     var description: String
