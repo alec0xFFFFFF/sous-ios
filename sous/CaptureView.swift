@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import Vision
 
 
 struct CaptureView: View {
@@ -162,7 +163,7 @@ struct CaptureView: View {
                     .padding()
                     if let recipe = recipeResponse, recipe.id != -1 {
                         Text("Last Recipe Submitted:")
-                        Text("Title: \(recipe.title )")
+                        Text("Title: \(recipe.title)")
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                         Text("Author: \(recipe.author ?? "Unknown")")
@@ -177,7 +178,7 @@ struct CaptureView: View {
                         Text("Ingredients: \(recipe.ingredients )")
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
-                        Text("Servings: \(recipe.servings.map(String.init) ?? "Not Specified")")
+                        Text("Servings: \(recipe.servings?.stringValue ?? "N/A")")
                             .lineLimit(nil)
                             .fixedSize(horizontal: false, vertical: true)
                         Text("Steps: \(recipe.steps )")
@@ -212,6 +213,20 @@ struct CaptureView: View {
         sendingRequest = false
     }
     
+    private func ocrImages(_ images: [UIImage]) -> String {
+        var totalText = ""
+        print("ocr'ing")
+        for image in images {
+            performOCR(on: image) { text in
+                totalText += text + "\n\n"
+            }
+        }
+        
+        print(totalText)
+        
+        return totalText
+    }
+    
     private func addRecipe(_ recipe_images: [UIImage]) {
         sendingRequest = true
         let url = URL(string: "https://recipe-service-production.up.railway.app/v1/")!
@@ -222,6 +237,14 @@ struct CaptureView: View {
 
         var body = Data()
 
+        let ocr_text = ocrImages(images)
+        print(ocr_text)
+        
+        // Append OCR text part
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"ocr_text\"\r\n\r\n")
+        body.append("\(ocr_text)\r\n")
+        
         for (index, image) in images.enumerated() {
 
             var imageData = image.pngData()
@@ -344,6 +367,31 @@ struct CaptureView: View {
             print("Error: \(error)")
         }
         sendingRequest = false
+    }
+    
+    func performOCR(on image: UIImage, completion: @escaping (String) -> Void) {
+        guard let cgImage = preprocessedImage(image).cgImage else { return }
+
+        let request = VNRecognizeTextRequest { request, error in
+            guard error == nil else { return }
+            guard let observations = request.results as? [VNRecognizedTextObservation] else { return }
+
+            let text = observations.compactMap { $0.topCandidates(1).first?.string }.joined(separator: "\n")
+            DispatchQueue.main.async {
+                completion(text)
+            }
+        }
+        request.recognitionLevel = .accurate
+        request.recognitionLanguages = ["en-US"] // Set appropriate languages
+
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        try? handler.perform([request])
+    }
+
+    func preprocessedImage(_ image: UIImage) -> UIImage {
+        // Apply image preprocessing here, e.g., contrast adjustment, binarization
+        // This is a placeholder for preprocessing logic.
+        return image
     }
 
 }

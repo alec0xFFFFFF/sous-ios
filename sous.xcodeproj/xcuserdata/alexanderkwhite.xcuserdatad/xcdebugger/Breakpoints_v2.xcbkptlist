@@ -14,13 +14,13 @@
             filePath = "sous/CaptureView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
             landmarkName = "logMeal()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "517C3B97-9FD3-4709-8901-2439BC793427 - 48d4b0fd60d623ca"
+                  uuid = "517C3B97-9FD3-4709-8901-2439BC793427 - 48d4b0fd60d62e4d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,12 +30,12 @@
                   urlString = "file:///Users/alexanderkwhite/Documents/sous/sous/CaptureView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
-                  offsetFromSymbolStart = "3284">
+                  startingLineNumber = "310"
+                  endingLineNumber = "310"
+                  offsetFromSymbolStart = "664">
                </Location>
                <Location
-                  uuid = "517C3B97-9FD3-4709-8901-2439BC793427 - 48d4b0fd60d623ca"
+                  uuid = "517C3B97-9FD3-4709-8901-2439BC793427 - 48d4b0fd60d62e6c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -45,8 +45,8 @@
                   urlString = "file:///Users/alexanderkwhite/Documents/sous/sous/CaptureView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
+                  startingLineNumber = "309"
+                  endingLineNumber = "309"
                   offsetFromSymbolStart = "652">
                </Location>
             </Locations>

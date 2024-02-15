@@ -23,6 +23,7 @@
 		2C38726A2B12B1F300FB02AE /* sousTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3872692B12B1F300FB02AE /* sousTests.swift */; };
 		2C3872742B12B1F300FB02AE /* sousUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3872732B12B1F300FB02AE /* sousUITests.swift */; };
 		2C3872762B12B1F300FB02AE /* sousUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3872752B12B1F300FB02AE /* sousUITestsLaunchTests.swift */; };
+		2CD26A452B7E8678009126E8 /* IntRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A442B7E8678009126E8 /* IntRange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		2C38726F2B12B1F300FB02AE /* sousUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sousUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C3872732B12B1F300FB02AE /* sousUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sousUITests.swift; sourceTree = "<group>"; };
 		2C3872752B12B1F300FB02AE /* sousUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sousUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2CD26A442B7E8678009126E8 /* IntRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntRange.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				2C38725E2B12B1F200FB02AE /* Preview Content */,
 				2C2B3F882B13DFBA00E642FE /* HomeView.swift */,
 				2C32B9292B6F565900DA4C30 /* RecipeResponse.swift */,
+				2CD26A442B7E8678009126E8 /* IntRange.swift */,
 				2C32B92B2B6F588300DA4C30 /* RecipeListView.swift */,
 				2C32B92D2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift */,
 				2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */,
@@ -293,6 +296,7 @@
 				2C2B3F892B13DFBA00E642FE /* HomeView.swift in Sources */,
 				2C32B9322B6F5CFB00DA4C30 /* RecipeDetailView.swift in Sources */,
 				2C2B3F852B1327EB00E642FE /* LoginView.swift in Sources */,
+				2CD26A452B7E8678009126E8 /* IntRange.swift in Sources */,
 				2C32B92C2B6F588300DA4C30 /* RecipeListView.swift in Sources */,
 				2C2B3F832B1323F100E642FE /* CaptureView.swift in Sources */,
 			);

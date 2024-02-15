@@ -15,7 +15,7 @@ struct RecipeResponse: Codable, Identifiable {
     var description: String
     var equipment: String
     var ingredients: String
-    var servings: Int?
+    var servings: IntRange?
     var steps: String
     var submissionMd5: String
     var time: String?

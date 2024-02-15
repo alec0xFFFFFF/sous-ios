@@ -12,32 +12,24 @@ struct RecipeDetailView: View {
     @State private var isLoading = true
 
     var body: some View {
-        VStack {
-            if isLoading {
-                ProgressView()
-            } else if let recipe = recipe {
-                Text("Title: \(recipe.title )")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Author: \(recipe.author ?? "Unknown")")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Description: \(recipe.description )")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Equipment: \(recipe.equipment )")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Ingredients: \(recipe.ingredients )")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Servings: \(recipe.servings.map(String.init) ?? "Not Specified")")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Steps: \(recipe.steps )")
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
+        ScrollView {
+            VStack(alignment: .leading) {
+                if isLoading {
+                    ProgressView()
+                } else if let recipe = recipe {
+                    Group {
+                        Text("Title: \(recipe.title)")
+                        Text("Author: \(recipe.author ?? "Unknown")")
+                        Text("Description: \(recipe.description)")
+                        Text("Equipment: \(recipe.equipment)")
+                        Text("Ingredients: \(recipe.ingredients)")
+                        Text("Servings: \(recipe.servings?.stringValue ?? "N/A")")
+                        Text("Steps: \(recipe.steps)")
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                }
+            }.padding()
         }
         .navigationBarTitle("Recipe Details", displayMode: .inline)
         .onAppear(perform: loadFullRecipe)
