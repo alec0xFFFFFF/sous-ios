@@ -27,6 +27,11 @@ struct HomeView: View {
                     Image(systemName: "bubble.left.and.text.bubble.right")
                     Text("Chat")
                 }
+            AudioChatView()
+                .tabItem {
+                    Image(systemName: "bubble.left.and.text.bubble.right")
+                    Text("Audio Chat")
+                }
         }
         .onAppear {
             let appearance = UITabBarAppearance()

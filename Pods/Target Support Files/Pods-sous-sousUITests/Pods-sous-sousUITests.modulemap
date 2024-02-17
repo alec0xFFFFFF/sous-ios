@@ -1,0 +1,6 @@
+framework module Pods_sous_sousUITests {
+  umbrella header "Pods-sous-sousUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
