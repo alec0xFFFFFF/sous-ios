@@ -16,11 +16,30 @@ class SpeechSynthesizerManager: NSObject, ObservableObject, AVSpeechSynthesizerD
         super.init()
         synthesizer.delegate = self
     }
+    
+    private func listVoices() {
+        let voices = AVSpeechSynthesisVoice.speechVoices()
+        for voice in voices {
+            print("Voice: \(voice.name), Language: \(voice.language), Identifier: \(voice.identifier)")
+        }
+    }
 
     func synthesizeSpeech(from text: String) {
         isSpeaking = true
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("Failed to set up audio session: \(error)")
+        }
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+
+//        listVoices()
+        let voice = AVSpeechSynthesisVoice(language: "en-US")
+
+        // Assign the voice to the utterance.
+        utterance.voice = voice
         synthesizer.speak(utterance)
     }
 
@@ -95,12 +114,6 @@ struct AudioChatView: View {
         getRecommendation()
     }
     
-    private func listVoices() {
-        let voices = AVSpeechSynthesisVoice.speechVoices()
-        for voice in voices {
-            print("Voice: \(voice.name), Language: \(voice.language), Identifier: \(voice.identifier)")
-        }
-    }
     
     private func getRecommendation() {
         let url = URL(string: "https://recipe-service-production.up.railway.app/v1/chat")!
