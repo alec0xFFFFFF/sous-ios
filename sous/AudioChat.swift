@@ -40,9 +40,17 @@ struct AudioChatView: View {
                         }
                     }
                 }
-            Text("👨‍🍳")
-                            .font(.system(size: 60))
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            if speechManager.isSpeaking || isListenting {
+                HStack{
+                    Spacer()
+                    VStack{
+                        Spacer()
+                        WaveformView()
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            }
         }
     }
 
@@ -155,5 +163,40 @@ struct GradientSphere: View {
                     scale = newValue ? 1.2 : 1.0
                 }
             }
+    }
+}
+
+
+struct WaveformBar: View {
+    var delay: Double
+    
+    @State private var isAnimating = false
+    
+    var body: some View {
+        Rectangle()
+            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.6), Color.white.opacity(0.3)]), startPoint: .top, endPoint: .bottom))
+            .frame(width: 5, height: isAnimating ? CGFloat.random(in: 15...25) : 15)
+            .cornerRadius(5)
+            .animation(
+                Animation.easeInOut(duration: 0.2)
+                    .repeatForever(autoreverses: true)
+                    .delay(delay)
+            )
+            .onAppear {
+                self.isAnimating.toggle()
+            }
+    }
+}
+
+struct WaveformView: View {
+    var body: some View {
+        VStack{
+            HStack(spacing: 4) {
+                ForEach(0..<7) { index in
+                    WaveformBar(delay: Double(index) * 0.05)
+                }
+                
+            }
+        }
     }
 }

@@ -120,7 +120,6 @@ class SpeechSynthesizerManager: NSObject, ObservableObject, AVSpeechSynthesizerD
     
     func synthesizeSpeechUsingAVSpeechSynthesizer(from text: String) {
         isSpeaking = true
-        
         do {
             try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
             try AVAudioSession.sharedInstance().setActive(true)
@@ -129,10 +128,8 @@ class SpeechSynthesizerManager: NSObject, ObservableObject, AVSpeechSynthesizerD
         }
         let utterance = AVSpeechUtterance(string: text)
 
-//        listVoices()
         let voice = AVSpeechSynthesisVoice(language: "en-US")
 
-        // Assign the voice to the utterance.
         utterance.voice = voice
         synthesizer.speak(utterance)
     }
@@ -154,14 +151,19 @@ class SpeechSynthesizerManager: NSObject, ObservableObject, AVSpeechSynthesizerD
     }
     
     func playSound(path: String) {
-            let url = URL(fileURLWithPath: path)
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: url)
-                audioPlayer?.play()
-            } catch {
-                // Handle the error
-                print("Could not load the audio file: \(error)")
+        let url = URL(fileURLWithPath: path)
+        do {
+            self.isSpeaking = true
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.delegate = self // Set the delegate to self
+            audioPlayer?.play()
+        } catch {
+            // Handle the error
+            DispatchQueue.main.async {
+                self.isSpeaking = false
             }
+            print("Could not load the audio file: \(error)")
         }
+    }
 
 }

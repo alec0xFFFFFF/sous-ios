@@ -33,7 +33,6 @@
 		2C3DC14E2B82C40000050359 /* yes_chef.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DC14A2B82C40000050359 /* yes_chef.mp3 */; };
 		2C3DC14F2B82C40000050359 /* yes_chef.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DC14A2B82C40000050359 /* yes_chef.mp3 */; };
 		2C3DC1502B82C40000050359 /* yes_chef.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DC14A2B82C40000050359 /* yes_chef.mp3 */; };
-		2C3DC1522B82C62D00050359 /* EnvVars.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DC1512B82C62D00050359 /* EnvVars.xcconfig */; };
 		2C3DC1542B82C6E600050359 /* PreviewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DC1532B82C6E600050359 /* PreviewConfig.swift */; };
 		2CD26A452B7E8678009126E8 /* IntRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A442B7E8678009126E8 /* IntRange.swift */; };
 		2CD26A482B7EF437009126E8 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD26A472B7EF437009126E8 /* SocketIO */; };
@@ -90,7 +89,6 @@
 		2C3DC1412B82A2F500050359 /* SpeechSynthesizerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizerManager.swift; sourceTree = "<group>"; };
 		2C3DC1492B82C40000050359 /* what_should_we_cook.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = what_should_we_cook.mp3; sourceTree = "<group>"; };
 		2C3DC14A2B82C40000050359 /* yes_chef.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yes_chef.mp3; sourceTree = "<group>"; };
-		2C3DC1512B82C62D00050359 /* EnvVars.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = EnvVars.xcconfig; sourceTree = "<group>"; };
 		2C3DC1532B82C6E600050359 /* PreviewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewConfig.swift; sourceTree = "<group>"; };
 		2CD26A442B7E8678009126E8 /* IntRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntRange.swift; sourceTree = "<group>"; };
 		2CD26A492B7EF52B009126E8 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				2C3293882B8019F400EEF7A9 /* MessageResponse.swift */,
 				2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */,
 				2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */,
-				2C3DC1512B82C62D00050359 /* EnvVars.xcconfig */,
 				2C3DC1532B82C6E600050359 /* PreviewConfig.swift */,
 			);
 			path = sous;
@@ -359,7 +356,6 @@
 				2C3DC14E2B82C40000050359 /* yes_chef.mp3 in Resources */,
 				2C3DC14B2B82C40000050359 /* what_should_we_cook.mp3 in Resources */,
 				2C3872602B12B1F200FB02AE /* Preview Assets.xcassets in Resources */,
-				2C3DC1522B82C62D00050359 /* EnvVars.xcconfig in Resources */,
 				2C38725D2B12B1F200FB02AE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,7 +511,6 @@
 /* Begin XCBuildConfiguration section */
 		2C3872772B12B1F300FB02AE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C3DC1512B82C62D00050359 /* EnvVars.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -579,7 +574,6 @@
 		};
 		2C3872782B12B1F300FB02AE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C3DC1512B82C62D00050359 /* EnvVars.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
