@@ -5,51 +5,7 @@
 //  Created by Alexander K White on 2/15/24.
 //
 import SwiftUI
-import AVFoundation
 import Speech
-
-class SpeechSynthesizerManager: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
-    @Published var isSpeaking: Bool = false
-    let synthesizer = AVSpeechSynthesizer()
-
-    override init() {
-        super.init()
-        synthesizer.delegate = self
-    }
-    
-    private func listVoices() {
-        let voices = AVSpeechSynthesisVoice.speechVoices()
-        for voice in voices {
-            print("Voice: \(voice.name), Language: \(voice.language), Identifier: \(voice.identifier)")
-        }
-    }
-
-    func synthesizeSpeech(from text: String) {
-        isSpeaking = true
-        
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker])
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print("Failed to set up audio session: \(error)")
-        }
-        let utterance = AVSpeechUtterance(string: text)
-
-//        listVoices()
-        let voice = AVSpeechSynthesisVoice(language: "en-US")
-
-        // Assign the voice to the utterance.
-        utterance.voice = voice
-        synthesizer.speak(utterance)
-    }
-
-    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
-        DispatchQueue.main.async {
-            self.isSpeaking = false
-        }
-    }
-
-}
 
 
 struct AudioChatView: View {
@@ -63,23 +19,30 @@ struct AudioChatView: View {
     
     
     var body: some View {
-        VStack {
-            if speechManager.isSpeaking {
-                Button("Yes, Chef.") {
-                    speechManager.synthesizer.stopSpeaking(at: .immediate)
+        ZStack {
+            GradientSphere(isSpeaking: $speechManager.isSpeaking)
+                .onAppear {
+                    speechManager.playWelcome()
                 }
-            } else if isThinking {
-                Text("Thinking...")
-            } else {
-                Button(isListenting ? "Stop Listening" : "Start Listening") {
-                if isListenting {
-                    stopListening()
-                } else {
-                    startListening()
+                .onTapGesture {
+                    withAnimation {
+                        if speechManager.isSpeaking {
+                            speechManager.synthesizer.stopSpeaking(at: .immediate)
+                        }
+                        else {
+                            if isListenting {
+                                speechManager.playYesChef()
+                                stopListening()
+                            } else {
+                                startListening()
+                            }
+                            isListenting.toggle()
+                        }
+                    }
                 }
-                isListenting.toggle()
-            }
-            }
+            Text("👨‍🍳")
+                            .font(.system(size: 60))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
         }
     }
 
@@ -165,5 +128,32 @@ struct AudioChatView: View {
 struct AudioChatView_Previews: PreviewProvider {
     static var previews: some View {
         AudioChatView()
+    }
+}
+
+struct GradientSphere: View {
+    @Binding var isSpeaking: Bool
+    @State private var gradientCenter = UnitPoint(x: 0.5, y: 0.5)
+    
+    @State private var scale: CGFloat = 1.0
+
+    var body: some View {
+        let colors: [Color] = isSpeaking ? [.red, .orange] : [.purple, .blue]
+        let gradient = RadialGradient(gradient: Gradient(colors: colors), center: gradientCenter, startRadius: 5, endRadius: 200)
+
+        Circle()
+            .fill(gradient)
+            .frame(width: 200, height: 200)
+            .scaleEffect(scale)
+            .onAppear {
+                withAnimation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
+                    gradientCenter = UnitPoint(x: 0, y: 0)
+                }
+            }
+            .onChange(of: isSpeaking) { newValue in
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    scale = newValue ? 1.2 : 1.0
+                }
+            }
     }
 }
