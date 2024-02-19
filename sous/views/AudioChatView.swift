@@ -6,21 +6,37 @@
 //
 import SwiftUI
 import Speech
+import Combine
 
 
 struct AudioChatView: View {
     @State private var message: String = ""
     @State private var messageResponse: MessageResponse?
     @State private var isListenting: Bool = false
-    @State private var isThinking: Bool = false
+    @State var isThinking: Bool = false
     @StateObject private var speechManager = SpeechSynthesizerManager()
     @State private var speechRecognizer = SFSpeechRecognizer()
     @State private var audioEngine = AVAudioEngine()
+    @State private var showAlert: Bool = false
+    @State private var holdTimer: Timer?
     
+    func setupSpeechManager() {
+        speechManager.updateThinkingHandler = { newValue in
+            self.isThinking = newValue
+        }
+    }
     
     var body: some View {
         ZStack {
-            GradientSphere(isSpeaking: $speechManager.isSpeaking)
+            Color.clear
+                .contentShape(Rectangle())
+                .edgesIgnoringSafeArea(.all)
+                .gesture(
+                LongPressGesture(minimumDuration: 2)
+                .onChanged { _ in startTimer() }
+                .onEnded { _ in holdTimer?.invalidate() }
+                )
+            GradientSphere(isSpeaking: $speechManager.isSpeaking, isThinking: $isThinking)
                 .onAppear {
                     speechManager.playWelcome()
                 }
@@ -31,8 +47,10 @@ struct AudioChatView: View {
                         }
                         else {
                             if isListenting {
-                                speechManager.playYesChef()
-                                stopListening()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    speechManager.playYesChef()
+                                    stopSpeechRecognition()
+                                }
                             } else {
                                 startListening()
                             }
@@ -50,12 +68,40 @@ struct AudioChatView: View {
                     }
                     Spacer()
                 }
+            } else if isThinking {
+                HStack{
+                    Spacer()
+                    VStack{
+                        Spacer()
+                        LoadingAnimationView()
+                        Spacer()
+                    }
+                    Spacer()
+                }
             }
+                        
+        }.alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Long Press Detected"),
+                message: Text(speechManager.useElevenLabsAPI ? "You held the press for 2 seconds. Expert mode enabled. 🧑‍🍳" : "Expert mode disabled"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .onDisappear { holdTimer?.invalidate() }
+    }
+    
+    
+    private func startTimer() {
+        holdTimer?.invalidate() // Invalidate any existing timer
+        holdTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            self.showAlert = true
+            speechManager.useElevenLabsAPI = !speechManager.useElevenLabsAPI
         }
     }
 
 
     private func startListening() {
+        setupSpeechManager()
         let recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         let inputNode = audioEngine.inputNode // Directly using inputNode as it's non-optional
         
@@ -75,13 +121,11 @@ struct AudioChatView: View {
         audioEngine.prepare()
         try! audioEngine.start()
     }
-
-    private func stopListening() {
+    
+    private func stopSpeechRecognition() {
         isThinking = true
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
-        // send request in text to server
-        // receive response just as text and immediately play it
         getRecommendation()
     }
     
@@ -136,67 +180,5 @@ struct AudioChatView: View {
 struct AudioChatView_Previews: PreviewProvider {
     static var previews: some View {
         AudioChatView()
-    }
-}
-
-struct GradientSphere: View {
-    @Binding var isSpeaking: Bool
-    @State private var gradientCenter = UnitPoint(x: 0.5, y: 0.5)
-    
-    @State private var scale: CGFloat = 1.0
-
-    var body: some View {
-        let colors: [Color] = isSpeaking ? [.red, .orange] : [.purple, .blue]
-        let gradient = RadialGradient(gradient: Gradient(colors: colors), center: gradientCenter, startRadius: 5, endRadius: 200)
-
-        Circle()
-            .fill(gradient)
-            .frame(width: 200, height: 200)
-            .scaleEffect(scale)
-            .onAppear {
-                withAnimation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true)) {
-                    gradientCenter = UnitPoint(x: 0, y: 0)
-                }
-            }
-            .onChange(of: isSpeaking) { newValue in
-                withAnimation(.easeInOut(duration: 0.5)) {
-                    scale = newValue ? 1.2 : 1.0
-                }
-            }
-    }
-}
-
-
-struct WaveformBar: View {
-    var delay: Double
-    
-    @State private var isAnimating = false
-    
-    var body: some View {
-        Rectangle()
-            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(0.6), Color.white.opacity(0.3)]), startPoint: .top, endPoint: .bottom))
-            .frame(width: 5, height: isAnimating ? CGFloat.random(in: 15...25) : 15)
-            .cornerRadius(5)
-            .animation(
-                Animation.easeInOut(duration: 0.2)
-                    .repeatForever(autoreverses: true)
-                    .delay(delay)
-            )
-            .onAppear {
-                self.isAnimating.toggle()
-            }
-    }
-}
-
-struct WaveformView: View {
-    var body: some View {
-        VStack{
-            HStack(spacing: 4) {
-                ForEach(0..<7) { index in
-                    WaveformBar(delay: Double(index) * 0.05)
-                }
-                
-            }
-        }
     }
 }

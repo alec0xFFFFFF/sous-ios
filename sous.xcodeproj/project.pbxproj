@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		19AA9CA8190E408D9A02869A /* Pods_sousTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D4BE4DFAB300917E8D1FF54 /* Pods_sousTests.framework */; };
 		2C2B3F832B1323F100E642FE /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F822B1323F100E642FE /* CaptureView.swift */; };
-		2C2B3F852B1327EB00E642FE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F842B1327EA00E642FE /* LoginView.swift */; };
+		2C2B3F852B1327EB00E642FE /* LoginSignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F842B1327EA00E642FE /* LoginSignupView.swift */; };
 		2C2B3F872B13286000E642FE /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F862B13286000E642FE /* BrowseView.swift */; };
 		2C2B3F892B13DFBA00E642FE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2B3F882B13DFBA00E642FE /* HomeView.swift */; };
 		2C3293872B8016E600EEF7A9 /* SpeechBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3293862B8016E600EEF7A9 /* SpeechBuffer.swift */; };
@@ -34,10 +34,16 @@
 		2C3DC14F2B82C40000050359 /* yes_chef.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DC14A2B82C40000050359 /* yes_chef.mp3 */; };
 		2C3DC1502B82C40000050359 /* yes_chef.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2C3DC14A2B82C40000050359 /* yes_chef.mp3 */; };
 		2C3DC1542B82C6E600050359 /* PreviewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DC1532B82C6E600050359 /* PreviewConfig.swift */; };
+		2C3DC1562B82D04C00050359 /* SpeechRecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DC1552B82D04C00050359 /* SpeechRecognitionManager.swift */; };
+		2C3DC15C2B82EEBF00050359 /* LoadingAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DC15B2B82EEBF00050359 /* LoadingAnimationView.swift */; };
+		2C3DC15E2B82EEF800050359 /* WaveformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DC15D2B82EEF800050359 /* WaveformView.swift */; };
+		2C3DC1602B82EF2800050359 /* GradientSphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C3DC15F2B82EF2800050359 /* GradientSphere.swift */; };
+		2C3DC1632B82F92D00050359 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3DC1622B82F92D00050359 /* GoogleSignIn */; };
+		2C3DC1652B82F92D00050359 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3DC1642B82F92D00050359 /* GoogleSignInSwift */; };
 		2CD26A452B7E8678009126E8 /* IntRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A442B7E8678009126E8 /* IntRange.swift */; };
 		2CD26A482B7EF437009126E8 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 2CD26A472B7EF437009126E8 /* SocketIO */; };
 		2CD26A4A2B7EF52B009126E8 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A492B7EF52B009126E8 /* SocketManager.swift */; };
-		2CD26A4C2B7EF741009126E8 /* AudioChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A4B2B7EF741009126E8 /* AudioChat.swift */; };
+		2CD26A4C2B7EF741009126E8 /* AudioChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A4B2B7EF741009126E8 /* AudioChatView.swift */; };
 		2CD26A4E2B7F0052009126E8 /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A4D2B7F0052009126E8 /* AudioStreamer.swift */; };
 		4B960ED527E85AF8E2DE3D48 /* Pods_sous_sousUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111911A4D155DD1C01E16057 /* Pods_sous_sousUITests.framework */; };
 		89CD1123680404FAD04337D1 /* Pods_sous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72189D5E4AFAF18345CAF45 /* Pods_sous.framework */; };
@@ -65,7 +71,7 @@
 		1B8E28AE831F83E93D50816F /* Pods-sousTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sousTests.debug.xcconfig"; path = "Target Support Files/Pods-sousTests/Pods-sousTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F9ADFB2879E8606208F020E /* Pods-sous.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sous.debug.xcconfig"; path = "Target Support Files/Pods-sous/Pods-sous.debug.xcconfig"; sourceTree = "<group>"; };
 		2C2B3F822B1323F100E642FE /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
-		2C2B3F842B1327EA00E642FE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		2C2B3F842B1327EA00E642FE /* LoginSignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupView.swift; sourceTree = "<group>"; };
 		2C2B3F862B13286000E642FE /* BrowseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
 		2C2B3F882B13DFBA00E642FE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		2C3293852B8013CC00EEF7A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -90,9 +96,13 @@
 		2C3DC1492B82C40000050359 /* what_should_we_cook.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = what_should_we_cook.mp3; sourceTree = "<group>"; };
 		2C3DC14A2B82C40000050359 /* yes_chef.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yes_chef.mp3; sourceTree = "<group>"; };
 		2C3DC1532B82C6E600050359 /* PreviewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewConfig.swift; sourceTree = "<group>"; };
+		2C3DC1552B82D04C00050359 /* SpeechRecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognitionManager.swift; sourceTree = "<group>"; };
+		2C3DC15B2B82EEBF00050359 /* LoadingAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingAnimationView.swift; sourceTree = "<group>"; };
+		2C3DC15D2B82EEF800050359 /* WaveformView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformView.swift; sourceTree = "<group>"; };
+		2C3DC15F2B82EF2800050359 /* GradientSphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSphere.swift; sourceTree = "<group>"; };
 		2CD26A442B7E8678009126E8 /* IntRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntRange.swift; sourceTree = "<group>"; };
 		2CD26A492B7EF52B009126E8 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
-		2CD26A4B2B7EF741009126E8 /* AudioChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChat.swift; sourceTree = "<group>"; };
+		2CD26A4B2B7EF741009126E8 /* AudioChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChatView.swift; sourceTree = "<group>"; };
 		2CD26A4D2B7F0052009126E8 /* AudioStreamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamer.swift; sourceTree = "<group>"; };
 		4E4B75F2246C156F530D2D68 /* Pods-sousTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sousTests.release.xcconfig"; path = "Target Support Files/Pods-sousTests/Pods-sousTests.release.xcconfig"; sourceTree = "<group>"; };
 		5D4BE4DFAB300917E8D1FF54 /* Pods_sousTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sousTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +119,8 @@
 			files = (
 				2CD26A482B7EF437009126E8 /* SocketIO in Frameworks */,
 				89CD1123680404FAD04337D1 /* Pods_sous.framework in Frameworks */,
+				2C3DC1632B82F92D00050359 /* GoogleSignIn in Frameworks */,
+				2C3DC1652B82F92D00050359 /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,28 +168,17 @@
 		2C3872572B12B1F000FB02AE /* sous */ = {
 			isa = PBXGroup;
 			children = (
+				2C3DC15A2B82EE6C00050359 /* models */,
 				2C3DC1482B82C40000050359 /* sounds */,
 				2C3293852B8013CC00EEF7A9 /* Info.plist */,
 				2C3872582B12B1F000FB02AE /* sousApp.swift */,
-				2C38725A2B12B1F000FB02AE /* ChatView.swift */,
-				2C2B3F822B1323F100E642FE /* CaptureView.swift */,
-				2C2B3F842B1327EA00E642FE /* LoginView.swift */,
-				2C2B3F862B13286000E642FE /* BrowseView.swift */,
+				2C3DC1592B82D22000050359 /* managers */,
+				2C3DC1582B82D21600050359 /* viewcomponents */,
+				2C3DC1572B82D20E00050359 /* views */,
 				2C38725C2B12B1F200FB02AE /* Assets.xcassets */,
 				2C38725E2B12B1F200FB02AE /* Preview Content */,
-				2C2B3F882B13DFBA00E642FE /* HomeView.swift */,
 				2CD26A4D2B7F0052009126E8 /* AudioStreamer.swift */,
-				2C32B9292B6F565900DA4C30 /* RecipeResponse.swift */,
 				2C3293862B8016E600EEF7A9 /* SpeechBuffer.swift */,
-				2CD26A492B7EF52B009126E8 /* SocketManager.swift */,
-				2CD26A4B2B7EF741009126E8 /* AudioChat.swift */,
-				2C3DC1412B82A2F500050359 /* SpeechSynthesizerManager.swift */,
-				2CD26A442B7E8678009126E8 /* IntRange.swift */,
-				2C32B92B2B6F588300DA4C30 /* RecipeListView.swift */,
-				2C32B92D2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift */,
-				2C3293882B8019F400EEF7A9 /* MessageResponse.swift */,
-				2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */,
-				2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */,
 				2C3DC1532B82C6E600050359 /* PreviewConfig.swift */,
 			);
 			path = sous;
@@ -215,6 +216,53 @@
 				2C3DC14A2B82C40000050359 /* yes_chef.mp3 */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		2C3DC1572B82D20E00050359 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				2CD26A4B2B7EF741009126E8 /* AudioChatView.swift */,
+				2C2B3F882B13DFBA00E642FE /* HomeView.swift */,
+				2C2B3F862B13286000E642FE /* BrowseView.swift */,
+				2C32B92B2B6F588300DA4C30 /* RecipeListView.swift */,
+				2C2B3F842B1327EA00E642FE /* LoginSignupView.swift */,
+				2C2B3F822B1323F100E642FE /* CaptureView.swift */,
+				2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */,
+				2C38725A2B12B1F000FB02AE /* ChatView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		2C3DC1582B82D21600050359 /* viewcomponents */ = {
+			isa = PBXGroup;
+			children = (
+				2C3DC15B2B82EEBF00050359 /* LoadingAnimationView.swift */,
+				2C3DC15D2B82EEF800050359 /* WaveformView.swift */,
+				2C3DC15F2B82EF2800050359 /* GradientSphere.swift */,
+			);
+			path = viewcomponents;
+			sourceTree = "<group>";
+		};
+		2C3DC1592B82D22000050359 /* managers */ = {
+			isa = PBXGroup;
+			children = (
+				2CD26A492B7EF52B009126E8 /* SocketManager.swift */,
+				2C3DC1552B82D04C00050359 /* SpeechRecognitionManager.swift */,
+				2C3DC1412B82A2F500050359 /* SpeechSynthesizerManager.swift */,
+			);
+			path = managers;
+			sourceTree = "<group>";
+		};
+		2C3DC15A2B82EE6C00050359 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				2CD26A442B7E8678009126E8 /* IntRange.swift */,
+				2C32B92F2B6F5B5F00DA4C30 /* DishesResponse.swift */,
+				2C32B92D2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift */,
+				2C3293882B8019F400EEF7A9 /* MessageResponse.swift */,
+				2C32B9292B6F565900DA4C30 /* RecipeResponse.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		73EF35063F5E4BBFC10F1696 /* Pods */ = {
@@ -259,6 +307,8 @@
 			name = sous;
 			packageProductDependencies = (
 				2CD26A472B7EF437009126E8 /* SocketIO */,
+				2C3DC1622B82F92D00050359 /* GoogleSignIn */,
+				2C3DC1642B82F92D00050359 /* GoogleSignInSwift */,
 			);
 			productName = sous;
 			productReference = 2C3872552B12B1F000FB02AE /* sous.app */;
@@ -336,6 +386,7 @@
 			mainGroup = 2C38724C2B12B1F000FB02AE;
 			packageReferences = (
 				2CD26A462B7EF437009126E8 /* XCRemoteSwiftPackageReference "socket" */,
+				2C3DC1612B82F92D00050359 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 2C3872562B12B1F000FB02AE /* Products */;
 			projectDirPath = "";
@@ -454,7 +505,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CD26A4C2B7EF741009126E8 /* AudioChat.swift in Sources */,
+				2CD26A4C2B7EF741009126E8 /* AudioChatView.swift in Sources */,
+				2C3DC15E2B82EEF800050359 /* WaveformView.swift in Sources */,
+				2C3DC1602B82EF2800050359 /* GradientSphere.swift in Sources */,
 				2C3DC1422B82A2F500050359 /* SpeechSynthesizerManager.swift in Sources */,
 				2C38725B2B12B1F000FB02AE /* ChatView.swift in Sources */,
 				2CD26A4E2B7F0052009126E8 /* AudioStreamer.swift in Sources */,
@@ -462,12 +515,14 @@
 				2C32B9302B6F5B5F00DA4C30 /* DishesResponse.swift in Sources */,
 				2C32B92E2B6F5B4300DA4C30 /* QueriedRecipeResponse.swift in Sources */,
 				2C2B3F872B13286000E642FE /* BrowseView.swift in Sources */,
+				2C3DC15C2B82EEBF00050359 /* LoadingAnimationView.swift in Sources */,
 				2C3DC1542B82C6E600050359 /* PreviewConfig.swift in Sources */,
+				2C3DC1562B82D04C00050359 /* SpeechRecognitionManager.swift in Sources */,
 				2C32B92A2B6F565900DA4C30 /* RecipeResponse.swift in Sources */,
 				2CD26A4A2B7EF52B009126E8 /* SocketManager.swift in Sources */,
 				2C2B3F892B13DFBA00E642FE /* HomeView.swift in Sources */,
 				2C32B9322B6F5CFB00DA4C30 /* RecipeDetailView.swift in Sources */,
-				2C2B3F852B1327EB00E642FE /* LoginView.swift in Sources */,
+				2C2B3F852B1327EB00E642FE /* LoginSignupView.swift in Sources */,
 				2CD26A452B7E8678009126E8 /* IntRange.swift in Sources */,
 				2C32B92C2B6F588300DA4C30 /* RecipeListView.swift in Sources */,
 				2C2B3F832B1323F100E642FE /* CaptureView.swift in Sources */,
@@ -822,6 +877,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2C3DC1612B82F92D00050359 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		2CD26A462B7EF437009126E8 /* XCRemoteSwiftPackageReference "socket" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
@@ -833,6 +896,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2C3DC1622B82F92D00050359 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C3DC1612B82F92D00050359 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		2C3DC1642B82F92D00050359 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C3DC1612B82F92D00050359 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		2CD26A472B7EF437009126E8 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2CD26A462B7EF437009126E8 /* XCRemoteSwiftPackageReference "socket" */;
