@@ -10,18 +10,17 @@ import Combine
 
 
 struct AudioChatView: View {
-    @State private var message: String = ""
     @State private var messageResponse: MessageResponse?
-    @State private var isListenting: Bool = false
     @State var isThinking: Bool = false
-    @StateObject private var speechManager = SpeechSynthesizerManager()
+    @StateObject private var speechSynthesizerManager = SpeechSynthesizerManager()
     @State private var speechRecognizer = SFSpeechRecognizer()
     @State private var audioEngine = AVAudioEngine()
+    @StateObject private var speechRecognitionManager = SpeechRecognitionManager()
     @State private var showAlert: Bool = false
     @State private var holdTimer: Timer?
     
     func setupSpeechManager() {
-        speechManager.updateThinkingHandler = { newValue in
+        speechSynthesizerManager.updateThinkingHandler = { newValue in
             self.isThinking = newValue
         }
     }
@@ -36,29 +35,28 @@ struct AudioChatView: View {
                 .onChanged { _ in startTimer() }
                 .onEnded { _ in holdTimer?.invalidate() }
                 )
-            GradientSphere(isSpeaking: $speechManager.isSpeaking, isThinking: $isThinking)
+            GradientSphere(isSpeaking: $speechSynthesizerManager.isSpeaking, isThinking: $isThinking)
                 .onAppear {
-                    speechManager.playWelcome()
+                    speechSynthesizerManager.playWelcome()
                 }
                 .onTapGesture {
                     withAnimation {
-                        if speechManager.isSpeaking {
-                            speechManager.synthesizer.stopSpeaking(at: .immediate)
+                        if speechSynthesizerManager.isSpeaking {
+                            speechSynthesizerManager.synthesizer.stopSpeaking(at: .immediate)
                         }
                         else {
-                            if isListenting {
+                            if speechRecognitionManager.isListening {
+                                speechRecognitionManager.stopSpeechRecognition()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    speechManager.playYesChef()
-                                    stopSpeechRecognition()
+                                    speechSynthesizerManager.playYesChef()
                                 }
                             } else {
-                                startListening()
+                                startListeningNew()
                             }
-                            isListenting.toggle()
                         }
                     }
                 }
-            if speechManager.isSpeaking || isListenting {
+            if speechSynthesizerManager.isSpeaking || speechRecognitionManager.isListening {
                 HStack{
                     Spacer()
                     VStack{
@@ -79,58 +77,48 @@ struct AudioChatView: View {
                     Spacer()
                 }
             }
-                        
+        }.onAppear {
+            self.startListeningNew()
+        }.onChange(of: speechRecognitionManager.isReadyToReport) { newState in
+            if newState == true {
+                sendRequestWithTranscript(transcript: speechRecognitionManager.recordedTranscript)
+                speechRecognitionManager.clear()
+            }
         }.alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Long Press Detected"),
-                message: Text(speechManager.useElevenLabsAPI ? "You held the press for 2 seconds. Expert mode enabled. 🧑‍🍳" : "Expert mode disabled"),
+                message: Text(speechSynthesizerManager.useElevenLabsAPI ? "You held the press for 2 seconds. Expert mode enabled. 🧑‍🍳" : "Expert mode disabled"),
                 dismissButton: .default(Text("OK"))
             )
         }
         .onDisappear { holdTimer?.invalidate() }
     }
     
+    private func startListeningNew() {
+        do {
+            try speechRecognitionManager.startListening()
+        } catch {
+            print("Error starting speech recognition: \(error)")
+        }
+    }
     
     private func startTimer() {
         holdTimer?.invalidate() // Invalidate any existing timer
         holdTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
             self.showAlert = true
-            speechManager.useElevenLabsAPI = !speechManager.useElevenLabsAPI
+            speechSynthesizerManager.useElevenLabsAPI = !speechSynthesizerManager.useElevenLabsAPI
         }
-    }
-
-
-    private func startListening() {
-        setupSpeechManager()
-        let recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        let inputNode = audioEngine.inputNode // Directly using inputNode as it's non-optional
-        
-        recognitionRequest.shouldReportPartialResults = true
-        speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { result, error in
-            if let result = result {
-                self.message = result.bestTranscription.formattedString
-            }
-        })
-        
-        let recordingFormat = inputNode.outputFormat(forBus: 0)
-        // this crashes in preview
-        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
-            recognitionRequest.append(buffer)
-        }
-        
-        audioEngine.prepare()
-        try! audioEngine.start()
     }
     
-    private func stopSpeechRecognition() {
+    private func sendRequestWithTranscript(transcript: String) {
         isThinking = true
-        audioEngine.stop()
-        audioEngine.inputNode.removeTap(onBus: 0)
-        getRecommendation()
+        print("Transcript updated: \(speechRecognitionManager.recordedTranscript)")
+        getRecommendation(transcript: transcript)
     }
     
     
-    private func getRecommendation() {
+    
+    private func getRecommendation(transcript: String) {
         let url = URL(string: "https://recipe-service-production.up.railway.app/v1/chat")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -138,7 +126,7 @@ struct AudioChatView: View {
         
         // Prepare the JSON payload with location data
         let payload: [String: Any] = [
-            "content": message
+            "content": transcript
         ]
         
         do {
@@ -165,7 +153,7 @@ struct AudioChatView: View {
                 do {
                     if let decodedResponse = try? JSONDecoder().decode(MessageResponse.self, from: data) {
                         self.messageResponse = decodedResponse
-                        speechManager.synthesizeSpeech(from: decodedResponse.content)
+                        speechSynthesizerManager.synthesizeSpeech(from: decodedResponse.content)
                         isThinking = false
                     }
                 } catch {

@@ -13,7 +13,7 @@ class SpeechSynthesizerManager: NSObject, ObservableObject, AVSpeechSynthesizerD
     @Published var isSpeaking: Bool = false
     let synthesizer = AVSpeechSynthesizer()
     var audioPlayer: AVAudioPlayer?
-    @Published var useElevenLabsAPI: Bool = true
+    @Published var useElevenLabsAPI: Bool = false
     var updateThinkingHandler: ((Bool) -> Void)?
     @Published private var elevenLabsApiKey: String = ""
     

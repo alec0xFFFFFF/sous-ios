@@ -4,16 +4,21 @@
 //
 //  Created by Alexander K White on 2/18/24.
 //
-
 import Foundation
 import Speech
+import AVFoundation
 
-class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate {
+class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate, ObservableObject {
     private let speechRecognizer: SFSpeechRecognizer
     private let audioEngine = AVAudioEngine()
     private var recognitionTask: SFSpeechRecognitionTask?
     private var silenceTimer: Timer?
-    private let silenceThreshold: TimeInterval = 1.0
+    private let silenceThreshold: TimeInterval = 1.5
+    private var keyPhraseDetected = false
+    private var transcriptStartPosition = 0
+    @Published var recordedTranscript: String = "" // Publicly accessible transcript
+    @Published var isListening: Bool = false
+    @Published var isReadyToReport: Bool = false
 
     override init() {
         speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
@@ -23,19 +28,30 @@ class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate {
 
     func startListening() throws {
         if recognitionTask != nil {
-            // A recognition task is already in progress
             stopSpeechRecognition()
         }
 
         let recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        let inputNode = audioEngine.inputNode // Direct use without optional binding
+        let inputNode = audioEngine.inputNode
 
         recognitionRequest.shouldReportPartialResults = true
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
-            if let result = result {
-                // Handle the speech recognition result here
-                print(result.bestTranscription.formattedString)
-                self?.resetSilenceTimer()
+            guard let self = self else { return }
+
+            if let result = result, self.isListening {
+                let transcription = result.bestTranscription.formattedString
+
+                if transcription.lowercased().contains("chef") && !self.keyPhraseDetected {
+                    self.recordedTranscript = "" // Clear the recorded transcript
+                    self.keyPhraseDetected = true
+                    self.transcriptStartPosition = result.bestTranscription.segments.last?.substringRange.location ?? 0
+                }
+
+                if self.keyPhraseDetected {
+                    let startIndex = transcription.index(transcription.startIndex, offsetBy: self.transcriptStartPosition)
+                    self.recordedTranscript = String(transcription[startIndex...])
+                    self.resetSilenceTimer()
+                }
             } else if let error = error {
                 print("Speech recognition error: \(error)")
             }
@@ -45,25 +61,31 @@ class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate {
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
             recognitionRequest.append(buffer)
         }
-
         audioEngine.prepare()
         try audioEngine.start()
-        startSilenceTimer()
+        self.isListening = true
     }
 
+    private func stopRecording() {
+        print("Captured Transcript: \(recordedTranscript)")
+        keyPhraseDetected = false
+        self.isListening = false
+        self.isReadyToReport = true
+    }
 
-    private func stopSpeechRecognition() {
+    func stopSpeechRecognition() {
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
         recognitionTask?.cancel()
         recognitionTask = nil
         silenceTimer?.invalidate()
+        stopRecording()
     }
 
     private func startSilenceTimer() {
         silenceTimer?.invalidate()
         silenceTimer = Timer.scheduledTimer(withTimeInterval: silenceThreshold, repeats: false) { [weak self] _ in
-            self?.stopSpeechRecognition()
+            self?.stopRecording()
         }
     }
 
@@ -74,5 +96,17 @@ class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate {
     // Implement any necessary SFSpeechRecognizerDelegate methods
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
         // Handle the availability change
+    }
+    
+    func enable() {
+        self.isListening = true
+    }
+    
+    func disable() {
+        self.isListening = false
+    }
+    
+    func clear() {
+        self.isReadyToReport = false
     }
 }
