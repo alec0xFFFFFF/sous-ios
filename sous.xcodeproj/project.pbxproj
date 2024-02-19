@@ -45,6 +45,7 @@
 		2CD26A4A2B7EF52B009126E8 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A492B7EF52B009126E8 /* SocketManager.swift */; };
 		2CD26A4C2B7EF741009126E8 /* AudioChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A4B2B7EF741009126E8 /* AudioChatView.swift */; };
 		2CD26A4E2B7F0052009126E8 /* AudioStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD26A4D2B7F0052009126E8 /* AudioStreamer.swift */; };
+		2CE2522B2B83C87200F4334A /* AudioStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE2522A2B83C87200F4334A /* AudioStreamView.swift */; };
 		4B960ED527E85AF8E2DE3D48 /* Pods_sous_sousUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111911A4D155DD1C01E16057 /* Pods_sous_sousUITests.framework */; };
 		89CD1123680404FAD04337D1 /* Pods_sous.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C72189D5E4AFAF18345CAF45 /* Pods_sous.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		2CD26A492B7EF52B009126E8 /* SocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		2CD26A4B2B7EF741009126E8 /* AudioChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioChatView.swift; sourceTree = "<group>"; };
 		2CD26A4D2B7F0052009126E8 /* AudioStreamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamer.swift; sourceTree = "<group>"; };
+		2CE2522A2B83C87200F4334A /* AudioStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStreamView.swift; sourceTree = "<group>"; };
 		4E4B75F2246C156F530D2D68 /* Pods-sousTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sousTests.release.xcconfig"; path = "Target Support Files/Pods-sousTests/Pods-sousTests.release.xcconfig"; sourceTree = "<group>"; };
 		5D4BE4DFAB300917E8D1FF54 /* Pods_sousTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sousTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6468EF999AF282ABE0CCD0 /* Pods-sous-sousUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sous-sousUITests.debug.xcconfig"; path = "Target Support Files/Pods-sous-sousUITests/Pods-sous-sousUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				2C2B3F822B1323F100E642FE /* CaptureView.swift */,
 				2C32B9312B6F5CFB00DA4C30 /* RecipeDetailView.swift */,
 				2C38725A2B12B1F000FB02AE /* ChatView.swift */,
+				2CE2522A2B83C87200F4334A /* AudioStreamView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				2CD26A4A2B7EF52B009126E8 /* SocketManager.swift in Sources */,
 				2C2B3F892B13DFBA00E642FE /* HomeView.swift in Sources */,
 				2C32B9322B6F5CFB00DA4C30 /* RecipeDetailView.swift in Sources */,
+				2CE2522B2B83C87200F4334A /* AudioStreamView.swift in Sources */,
 				2C2B3F852B1327EB00E642FE /* LoginSignupView.swift in Sources */,
 				2CD26A452B7E8678009126E8 /* IntRange.swift in Sources */,
 				2C32B92C2B6F588300DA4C30 /* RecipeListView.swift in Sources */,

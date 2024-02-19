@@ -27,6 +27,7 @@ class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate, Observable
     }
 
     func startListening() throws {
+        print("listening now!")
         if recognitionTask != nil {
             stopSpeechRecognition()
         }
@@ -48,6 +49,8 @@ class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate, Observable
                 }
 
                 if self.keyPhraseDetected {
+                    
+                    print("index\(transcription.startIndex). \(self.transcriptStartPosition) \(transcription.count) \(transcription)")
                     let startIndex = transcription.index(transcription.startIndex, offsetBy: self.transcriptStartPosition)
                     self.recordedTranscript = String(transcription[startIndex...])
                     self.resetSilenceTimer()
@@ -68,9 +71,10 @@ class SpeechRecognitionManager: NSObject, SFSpeechRecognizerDelegate, Observable
 
     private func stopRecording() {
         print("Captured Transcript: \(recordedTranscript)")
-        keyPhraseDetected = false
+        self.keyPhraseDetected = false
         self.isListening = false
         self.isReadyToReport = true
+        self.transcriptStartPosition = 0
     }
 
     func stopSpeechRecognition() {
